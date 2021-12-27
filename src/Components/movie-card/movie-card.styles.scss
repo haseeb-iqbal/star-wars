@@ -1,0 +1,25 @@
+.card{
+    display: flex;
+    flex-direction: row;
+    border-style: solid;
+    width:400px;
+    height:100px;
+    text-align:left;
+    background-color: rgb(58, 58, 58);
+    color:white;
+    border-color:  rgb(58, 58, 58);
+    padding:10px;
+    justify-content: space-between;
+    &:hover{
+        background-color: rgb(102, 102, 102);
+    }
+
+    .favourite-button{
+        background-color:red;
+        align-content:flex-end;
+    }
+    .description{
+        flex:1;
+        background-color: saddlebrown;
+    }
+}
