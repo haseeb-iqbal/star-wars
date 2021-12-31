@@ -6,10 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: linear-gradient(to right, rgb(122, 204, 150) , rgb(43, 33, 185));
-  display: flex;
-  justify-content: center;
-  align-items: center;  
-  height: 100vh;
+
 }
 
 code {

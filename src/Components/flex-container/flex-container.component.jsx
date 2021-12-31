@@ -1,6 +1,5 @@
 import React from "react";
 import "./flex-container.styles.scss";
-import Logo from '../../assets/logo.png';
 import MovieCard from "../movie-card/movie-card.component";
 
 class FlexContainer extends React.Component{
@@ -46,8 +45,18 @@ class FlexContainer extends React.Component{
                 movie.title.toLowerCase().includes(searchField.toLocaleLowerCase()));
 
             return filteredMovies.map(movie =><MovieCard movieName ={movie.title} isFavourite={this.state.favouriteMovies.includes(movie.episode_id)} 
-                movieId = {movie.episode_id} key = {movie.episode_id} onFavouriteClick ={this.onFavouriteClick} />);
+                episodeId = {movie.episode_id} key = {movie.episode_id} onFavouriteClick ={this.onFavouriteClick} movieId={this.getMovieNumber(movie.url)}/>);
         }
+    }
+
+    getMovieNumber(movieUrl)
+    {
+        let i =movieUrl.length-2;
+        while(movieUrl[i]!= '/')
+        {
+            i--;
+        }
+        return movieUrl.substring(i+1,movieUrl.length-1);
     }
 
     onFavouriteClick = (movieId) =>{
@@ -76,9 +85,9 @@ class FlexContainer extends React.Component{
     }
     return(
     <div className="container">
-         <header className="header">
+         {/* <header className="header">
             <img src={Logo} className="main-logo"/>
-        </header>
+        </header> */}
         <div className="navbar">
             <div>link1</div>
             <div>link2</div>
