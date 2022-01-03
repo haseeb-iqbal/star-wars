@@ -1,25 +1,57 @@
 .card{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     border-style: solid;
     width:400px;
-    height:100px;
-    text-align:left;
+    height:550px;
+    text-align:center;
     background-color: rgb(58, 58, 58);
     color:white;
     border-color:  rgb(58, 58, 58);
     padding:10px;
-    justify-content: space-between;
     &:hover{
         background-color: rgb(102, 102, 102);
     }
 
-    .favourite-button{
-        background-color:red;
-        align-content:flex-end;
+    .button-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        gap: 50px;
     }
+
+    .movie-buttons{
+        width:120px;
+        height: 40px;
+        cursor: pointer;
+        color: black;
+        
+    }
+
+    .title{
+        display: flex;
+        flex-direction: column;
+        height:60px;
+        justify-content: center;
+    }
+    .poster
+    {
+        width:auto;
+        height:400px;
+        cursor: pointer;
+    }
+    
+    .poster
+    {
+        width:auto;
+        height:400px;
+        cursor: pointer;
+    }
+
     .description{
         flex:1;
-        background-color: saddlebrown;
     }
+
+
 }

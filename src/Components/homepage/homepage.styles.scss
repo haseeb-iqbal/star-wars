@@ -11,38 +11,34 @@
     height:400px;
  }
 
- .sidebar{
-    display:flex;
-    flex:.05;
-    width:50px;
-    background-color: red;
-    flex-direction: column;
-    justify-content:flex-start;
-    padding: 20px 10px;
-    gap:10px;
-
- }
-
  .navbar{
      display: flex;
      flex-direction:row;
      gap: 20px;
      font-size: 20px;
-     background-color: orange;
-     padding: 10px 20px;
-
+     background-color:lightseagreen;
+     padding: 10px 50px;
  }
 
  .content{
     flex-direction: column;
     flex:1;
     display: flex;
+    flex-wrap:wrap;
     font-size: 20px;
-    background-color: blueviolet;
-    padding: 10px 20px;
-    gap:10px;
-    
+    background-color: lightslategray;
+    padding: 10px 90px;
+    gap:30px;
+    width:100vw;
 }
+
+.movie-container{
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: flex-start;
+    }
 
 .lower-container{
     display: flex;
@@ -51,6 +47,8 @@
 }
 
 .search-bar{
-    width:200px;
-    height:30px;
+    width:250px;
+    height:40px;
+    font-size: large;
+    color: black;
 }

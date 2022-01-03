@@ -1,8 +1,8 @@
 import React from "react";
-import "./flex-container.styles.scss";
+import "./homepage.styles.scss";
 import MovieCard from "../movie-card/movie-card.component";
 
-class FlexContainer extends React.Component{
+class HomePage extends React.Component{
     constructor()
     {
         super();
@@ -15,12 +15,9 @@ class FlexContainer extends React.Component{
     }
     componentDidMount()
     {
-        // console.log("getting swap");
         fetch('https://swapi.dev/api/films')
         .then(response=>response.json())
-        .then(response => this.setState({apiResponse:response}
-            // ,()=>{console.log(this.state.apiResponse.results[0].title)}
-            ));
+        .then(response => this.setState({apiResponse:response}));
     }
 
     displayMovieCard= () => {
@@ -42,13 +39,20 @@ class FlexContainer extends React.Component{
                 }
             );
             filteredMovies = filteredMovies.filter(movie=>
-                movie.title.toLowerCase().includes(searchField.toLocaleLowerCase()));
-
-            return filteredMovies.map(movie =><MovieCard movieName ={movie.title} isFavourite={this.state.favouriteMovies.includes(movie.episode_id)} 
+                this.GetFullMovieTitle(movie).toLowerCase().includes(searchField.toLocaleLowerCase()));
+            console.log(filteredMovies);
+            return filteredMovies.map(movie =><MovieCard movieName ={this.GetFullMovieTitle(movie)} isFavourite={this.state.favouriteMovies.includes(movie.episode_id)} 
                 episodeId = {movie.episode_id} key = {movie.episode_id} onFavouriteClick ={this.onFavouriteClick} movieId={this.getMovieNumber(movie.url)}/>);
         }
     }
 
+    GetFullMovieTitle(movie)
+    {
+        var toRoman = require('roman-numerals').toRoman;
+        let movieInRoman = toRoman(movie.episode_id );
+        return "Episode " + movieInRoman+": " +movie.title;
+    }
+    
     getMovieNumber(movieUrl)
     {
         let i =movieUrl.length-2;
@@ -78,37 +82,24 @@ class FlexContainer extends React.Component{
   }
 
     render() {
-    var buttons=[]; 
-    for(var i=0;i<100;i++)
-    {
-        buttons.push(<button key={i} className="flexItem">button{i}</button>)
-    }
     return(
     <div className="container">
-         {/* <header className="header">
-            <img src={Logo} className="main-logo"/>
-        </header> */}
         <div className="navbar">
-            <div>link1</div>
-            <div>link2</div>
-            <div>link3</div>
+            <div>(Placeholder Navbar)</div>
+            <div>News</div>
+            <div>Blog</div>
+            <div>Community</div>
+            <div>Games</div>
+            <div>Videos</div>
         </div>
         <div className="lower-container">
-            <div className="sidebar">
-                <div>link1</div>
-                <div>link2</div>
-                <div>link3</div>
-            </div>
             <div className="content">
                 <input type="search" placeholder="search movie" className="search-bar" onChange={this.handleChange}/>
-                {this.displayMovieCard()}
+                <div className="movie-container">{this.displayMovieCard()}</div>    
             </div>
         </div>
-        {/* <div className="container">
-                {buttons}
-        </div> */}
     </div>
     )};
 }
 
-export default FlexContainer;
+export default HomePage;
