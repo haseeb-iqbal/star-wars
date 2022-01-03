@@ -3,6 +3,7 @@ import './movie-page.styles.scss'
 import { withRouter } from "../../Utilities/withRouter.component";
 import moment from 'moment'
 import CharacterTooltip from "../../Components/character-tooltip/character-tooltip.component";
+import LoadingShadow from "../../Components/loading-shadow/loading-shadow.component";
 
 class MoviePage extends React.Component {
     constructor()
@@ -41,7 +42,9 @@ class MoviePage extends React.Component {
                 ));
         };
     }
-
+    
+    updateLoading
+    
     renderCharacters()
     {
         let innerTable=[];
@@ -69,9 +72,6 @@ class MoviePage extends React.Component {
             <span>
                 <h1>{this.state.filmApiResponse.title}</h1>
                 <span>{this.state.filmApiResponse.opening_crawl}</span>
-                <div className="tooltip">Hover over me
-                    <span className="tooltiptext">Tooltip text</span>
-                </div>
                 <div className="additional-info">
                     <div>
                         Director: {this.state.filmApiResponse.director}
@@ -90,13 +90,14 @@ class MoviePage extends React.Component {
                 </div>
             </span>)
         }
+        return (<LoadingShadow/>);
     }
 
     render(){
-    return (
-    <div className="description">
-        {this.showFilmInfo()}
-    </div>);
+        return (
+            <div className="description">
+                {this.showFilmInfo()}
+            </div>);
     }
 }
 

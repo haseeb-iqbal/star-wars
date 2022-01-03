@@ -1,6 +1,7 @@
 import React from "react";
 import "./homepage.styles.scss";
 import MovieCard from "../../Components/movie-card/movie-card.component";
+import LoadingShadow from "../../Components/loading-shadow/loading-shadow.component";
 
 class HomePage extends React.Component{
     constructor()
@@ -93,7 +94,7 @@ class HomePage extends React.Component{
   }
 
     render() {
-    if(!    this.state.isLoaded)
+    if(this.state.isLoaded)
         return(
             <div className="container">
                 <div className="navbar">
@@ -114,7 +115,7 @@ class HomePage extends React.Component{
             </div>
     )
     else
-        return (<div>Loading...</div>)
+        return (<LoadingShadow/>)
         
     
 }
