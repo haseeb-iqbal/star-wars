@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
                     <div className="title">
                     {props.movieName}
                     </div>
-                    <img src={process.env.PUBLIC_URL + './Images/Posters/episode1.jpg'} className="poster"onClick={()=>{navigate(`/movie/${props.movieId}`)}}/>
+                    <img src={process.env.PUBLIC_URL + `./Images/Posters/episode${props.episodeId}.jpg`} className="poster"onClick={()=>{navigate(`/movie/${props.movieId}`)}}/>
 
                 </div>
                 <div className="button-container">

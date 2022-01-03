@@ -1,5 +1,5 @@
 import './App.css';
-import HomePage from './Components/homepage/homepage.component';
+import HomePage from './Pages/homepage/homepage.component';
 import MoviePage from './Pages/movie-page/movie-page.component';
 import { Routes, Route } from "react-router-dom";
 import CustomHeader from './Components/header/custom-header.component';

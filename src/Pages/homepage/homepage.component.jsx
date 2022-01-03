@@ -1,6 +1,6 @@
 import React from "react";
 import "./homepage.styles.scss";
-import MovieCard from "../movie-card/movie-card.component";
+import MovieCard from "../../Components/movie-card/movie-card.component";
 
 class HomePage extends React.Component{
     constructor()
@@ -10,14 +10,21 @@ class HomePage extends React.Component{
             apiResponse:null,
             searchField:'',
             titles:null,
-            favouriteMovies: []
+            favouriteMovies: [],
+            featuresText:null,
+            isLoaded:false
         };
     }
     componentDidMount()
     {
+        fetch('/Data/Features.txt')
+        .then((file) => file.text())
+        .then(text  => {this.setState({featuresText:text})});
+
         fetch('https://swapi.dev/api/films')
         .then(response=>response.json())
-        .then(response => this.setState({apiResponse:response}));
+        .then(response => this.setState({apiResponse:response,isLoaded:true}));
+
     }
 
     displayMovieCard= () => {
@@ -40,8 +47,12 @@ class HomePage extends React.Component{
             );
             filteredMovies = filteredMovies.filter(movie=>
                 this.GetFullMovieTitle(movie).toLowerCase().includes(searchField.toLocaleLowerCase()));
-            console.log(filteredMovies);
-            return filteredMovies.map(movie =><MovieCard movieName ={this.GetFullMovieTitle(movie)} isFavourite={this.state.favouriteMovies.includes(movie.episode_id)} 
+            if(filteredMovies.length==0)
+            {
+                return <span>Movie not found</span>;
+            }
+            else
+                return filteredMovies.map(movie =><MovieCard movieName ={this.GetFullMovieTitle(movie)} isFavourite={this.state.favouriteMovies.includes(movie.episode_id)} 
                 episodeId = {movie.episode_id} key = {movie.episode_id} onFavouriteClick ={this.onFavouriteClick} movieId={this.getMovieNumber(movie.url)}/>);
         }
     }
@@ -82,24 +93,32 @@ class HomePage extends React.Component{
   }
 
     render() {
-    return(
-    <div className="container">
-        <div className="navbar">
-            <div>(Placeholder Navbar)</div>
-            <div>News</div>
-            <div>Blog</div>
-            <div>Community</div>
-            <div>Games</div>
-            <div>Videos</div>
-        </div>
-        <div className="lower-container">
-            <div className="content">
-                <input type="search" placeholder="search movie" className="search-bar" onChange={this.handleChange}/>
-                <div className="movie-container">{this.displayMovieCard()}</div>    
+    if(!    this.state.isLoaded)
+        return(
+            <div className="container">
+                <div className="navbar">
+                    <div>(Placeholder Navbar)</div>
+                    <div>News</div>
+                    <div>Blog</div>
+                    <div>Community</div>
+                    <div>Games</div>
+                    <div>Videos</div>
+                </div>
+                <div className="lower-container">
+                    <div className="content">
+                        <input type="search" placeholder="search movie" className="search-bar" onChange={this.handleChange}/>
+                        <div className="movie-container">{this.displayMovieCard()}</div>
+                        <div className="features-container">{this.state.featuresText}</div>        
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    )};
+    )
+    else
+        return (<div>Loading...</div>)
+        
+    
+}
+
 }
 
 export default HomePage;

@@ -1,0 +1,14 @@
+Features:
+• Data is being pulled from the star wars API called SWAPI
+• Created in React
+• Films are searchable
+• Films can be "Favourited" to make them appear at the beginning of the list
+• Films can also be "Unfavourited" films
+• Each film details page exists on its own URL
+• The film page details page is populated using SWAPI
+• Can view details of each character in the tooltip
+• Using Scss and flexbox for styling
+• Header and placeholder Navbar across pages
+• Created loading screen
+• Dynamic loading of images
+• Uploaded to Github
