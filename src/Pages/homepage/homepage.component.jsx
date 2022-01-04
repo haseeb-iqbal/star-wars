@@ -19,6 +19,15 @@ class HomePage extends React.Component{
     }
     componentDidMount()
     {
+        //Loading fvourites from local storage if present
+        var favouriteMovies=localStorage.getItem('favourite-movies');
+        if(favouriteMovies!=null){
+            this.setState({
+                favouriteMovies:JSON.parse(favouriteMovies)
+            });
+        }
+
+        //Fetching data to display
         fetch('/Data/Features.txt')
         .then((file) => file.text())
         .then(text  => {this.setState({featuresText:text})});
@@ -35,7 +44,6 @@ class HomePage extends React.Component{
             var filteredMovies =[];
             //Adding favourite movies first
             this.state.favouriteMovies.forEach(favouriteMovieId=>{
-                    console.log(apiResponse.results.find(movie=> favouriteMovieId===movie.episode_id));
                     filteredMovies.push(apiResponse.results.find(movie=> ( favouriteMovieId==movie.episode_id)));
                 });
             //Adding unfavourited movies
@@ -47,21 +55,24 @@ class HomePage extends React.Component{
                     }
                 }
             );
+            //filtering according to search
             filteredMovies = filteredMovies.filter(movie=>
                 GetFullMovieTitle(movie).toLowerCase().includes(searchField.toLocaleLowerCase()));
             if(filteredMovies.length==0)
             {
                 return <span>Movie not found</span>;
             }
-            else
+            else{
                 return filteredMovies.map(movie =><MovieCard movieName ={GetFullMovieTitle(movie)} isFavourite={this.state.favouriteMovies.includes(movie.episode_id)} 
-                episodeId = {movie.episode_id} key = {movie.episode_id} onFavouriteClick ={this.onFavouriteClick} movieId={this.getMovieNumber(movie.url)}/>);
+                        episodeId = {movie.episode_id} key = {movie.episode_id} onFavouriteClick ={this.onFavouriteClick} movieId={this.getMovieNumber(movie.url)}/>);
+            }
         }
     }
 
     
     getMovieNumber(movieUrl)
     {
+        //getting MovieId via the url
         let i =movieUrl.length-2;
         while(movieUrl[i]!= '/')
         {
@@ -71,16 +82,18 @@ class HomePage extends React.Component{
     }
 
     onFavouriteClick = (movieId) =>{
+        //updating local storage and favouritng or unfavouriting
+        var updateLocalStorage= ()=>localStorage.setItem('favourite-movies',JSON.stringify( this.state.favouriteMovies));
         if(!this.state.favouriteMovies.includes(movieId))
         {
             this.setState(prevState=>
-            ({favouriteMovies:[...prevState.favouriteMovies, movieId ]}));
+            ({favouriteMovies:[...prevState.favouriteMovies, movieId ]}),updateLocalStorage);
         }
         else
         {
             this.setState((prevState)=>(
                 {favouriteMovies: prevState.favouriteMovies.filter(id=>id!=movieId)}
-            ));
+            ),updateLocalStorage);
         }
     }
     

@@ -4,11 +4,12 @@ Features:
 • Films are searchable
 • Films can be "Favourited" to make them appear at the beginning of the list
 • Films can also be "Unfavourited" films
+• Favourite films are saved via local storage
 • Each film details page exists on its own URL
 • The film page details page is populated using SWAPI
 • Can view details of each character in the tooltip
 • Using Scss and flexbox for styling
 • Header and placeholder Navbar across pages
-• Created loading screen
+• Loading screen displayed during API calls
 • Dynamic loading of images
 • Uploaded to Github

@@ -16,21 +16,20 @@ class MoviePage extends React.Component {
             maxCharacters:40
         }
     }
-
     componentDidMount()
     {
+        //fetching film data then characters data
         fetch(`https://swapi.dev/api/films/${this.props.params.movieId}/`)
         .then(response=>response.json())
         .then(response => this.setState({filmApiResponse:response}
             ,()=>{
-                console.log(this.state.filmApiResponse);
                 this.getCharacterinfo();
             }
             ));
     }
 
     getCharacterinfo =() =>{
-        console.log(this.state.filmApiResponse.characters);
+        //getting info for all characters
         for(let i =0;i <this.state.maxCharacters && i< this.state.filmApiResponse.characters.length ;i++)
         {
             let characterAddress = this.state.filmApiResponse.characters[i];
@@ -39,13 +38,13 @@ class MoviePage extends React.Component {
             .then(response => this.setState( prevState => ({
                 characterApiResponse: [...prevState.characterApiResponse, response ]
             })
-                // ,()=>{console.log(this.state.characterApiResponse)}
                 ));
         };
     }
         
     renderCharacters()
     {
+        //displaying characters in table
         let innerTable=[];
         for(let i=0;i<this.state.characterApiResponse.length;i+=3)
         {
@@ -54,7 +53,6 @@ class MoviePage extends React.Component {
             {
                 rowItems.push(<td className="character-grid-item" key={j}><CharacterTooltip characterInfo={this.state.characterApiResponse[i+j]} key={i+j}/></td>)
             }
-            // <CharacterTooltip characterInfo={this.state.characterApiResponse[i+j]} key={i+j}/>
             innerTable.push(<tr key={i}>{rowItems}</tr>);
 
         }
@@ -76,7 +74,6 @@ class MoviePage extends React.Component {
                         </div>
                         <div className="summary">
                             <h1>{GetFullMovieTitle(this.state.filmApiResponse)}</h1>
-                            {console.log(this.state.filmApiResponse.episode_id)}
                             <div className="poster-container">
                                 <img src={process.env.PUBLIC_URL + `/Images/Posters/episode${this.state.filmApiResponse.episode_id}.jpg` } className="poster" />
                             </div>
