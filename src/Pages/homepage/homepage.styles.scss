@@ -1,9 +1,6 @@
-.container{
+.main-container{
     display: flex;
     flex-direction: column;
-}
-.flexItem{
-    height:20px;
 }
  .center-item{
     margin: auto;
@@ -54,7 +51,6 @@
 }
 
 .features-container {
-
     text-align: left;
     white-space: pre-line;
     background-color: rgb(58, 58, 58);

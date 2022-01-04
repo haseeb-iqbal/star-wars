@@ -2,7 +2,7 @@ import React from "react";
 import "./homepage.styles.scss";
 import MovieCard from "../../Components/movie-card/movie-card.component";
 import LoadingShadow from "../../Components/loading-shadow/loading-shadow.component";
-import Navbar from "../../Components/navbar/navbar.component";
+import { GetFullMovieTitle } from "../../Utilities/utils";
 
 class HomePage extends React.Component{
     constructor()
@@ -48,23 +48,17 @@ class HomePage extends React.Component{
                 }
             );
             filteredMovies = filteredMovies.filter(movie=>
-                this.GetFullMovieTitle(movie).toLowerCase().includes(searchField.toLocaleLowerCase()));
+                GetFullMovieTitle(movie).toLowerCase().includes(searchField.toLocaleLowerCase()));
             if(filteredMovies.length==0)
             {
                 return <span>Movie not found</span>;
             }
             else
-                return filteredMovies.map(movie =><MovieCard movieName ={this.GetFullMovieTitle(movie)} isFavourite={this.state.favouriteMovies.includes(movie.episode_id)} 
+                return filteredMovies.map(movie =><MovieCard movieName ={GetFullMovieTitle(movie)} isFavourite={this.state.favouriteMovies.includes(movie.episode_id)} 
                 episodeId = {movie.episode_id} key = {movie.episode_id} onFavouriteClick ={this.onFavouriteClick} movieId={this.getMovieNumber(movie.url)}/>);
         }
     }
 
-    GetFullMovieTitle(movie)
-    {
-        var toRoman = require('roman-numerals').toRoman;
-        let movieInRoman = toRoman(movie.episode_id );
-        return "Episode " + movieInRoman+": " +movie.title;
-    }
     
     getMovieNumber(movieUrl)
     {
@@ -97,7 +91,7 @@ class HomePage extends React.Component{
     render() {
     if(this.state.isLoaded)
         return(
-            <div className="container">
+            <div className="main-container">
 
                 <div className="lower-container">
                     <div className="content">

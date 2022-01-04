@@ -2,7 +2,7 @@ import './App.css';
 import HomePage from './Pages/homepage/homepage.component';
 import MoviePage from './Pages/movie-page/movie-page.component';
 import { Routes, Route } from "react-router-dom";
-import CustomHeader from './Components/header/custom-header.component';
+import CustomHeader from './Components/custom-header/custom-header.component';
 import Navbar from './Components/navbar/navbar.component';
 
 function App() {

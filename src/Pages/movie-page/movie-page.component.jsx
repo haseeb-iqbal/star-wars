@@ -4,6 +4,7 @@ import { withRouter } from "../../Utilities/withRouter.component";
 import moment from 'moment'
 import CharacterTooltip from "../../Components/character-tooltip/character-tooltip.component";
 import LoadingShadow from "../../Components/loading-shadow/loading-shadow.component";
+import { GetFullMovieTitle } from "../../Utilities/utils";
 
 class MoviePage extends React.Component {
     constructor()
@@ -51,7 +52,7 @@ class MoviePage extends React.Component {
             let rowItems=[];
             for(let j=0;j<3 && j+i<this.state.characterApiResponse.length;j++)
             {
-                rowItems.push(<td key={j}><CharacterTooltip characterInfo={this.state.characterApiResponse[i+j]} key={i+j}/></td>)
+                rowItems.push(<td className="character-grid-item" key={j}><CharacterTooltip characterInfo={this.state.characterApiResponse[i+j]} key={i+j}/></td>)
             }
             // <CharacterTooltip characterInfo={this.state.characterApiResponse[i+j]} key={i+j}/>
             innerTable.push(<tr key={i}>{rowItems}</tr>);
@@ -74,7 +75,7 @@ class MoviePage extends React.Component {
                             <button className="MovieButton" onClick={()=>{this.props.navigate("/")}}>Back</button>
                         </div>
                         <div className="summary">
-                            <h1>{this.state.filmApiResponse.title}</h1>
+                            <h1>{GetFullMovieTitle(this.state.filmApiResponse)}</h1>
                             {console.log(this.state.filmApiResponse.episode_id)}
                             <div className="poster-container">
                                 <img src={process.env.PUBLIC_URL + `/Images/Posters/episode${this.state.filmApiResponse.episode_id}.jpg` } className="poster" />
@@ -83,18 +84,20 @@ class MoviePage extends React.Component {
                         </div>
                         
                         <div className="additional-info">
-                            <div>
-                                Director: {this.state.filmApiResponse.director}
+                            <div className="director-info-container">
+                                <div>
+                                    Director: {this.state.filmApiResponse.director}
+                                </div>
+                                <div>
+                                    Producer: {this.state.filmApiResponse.producer}
+                                </div>
+                                <div>
+                                    Release date: {moment(this.state.filmApiResponse.release_date).format('MMMM Do YYYY')}
+                                </div>
                             </div>
-                            <div>
-                                Producer: {this.state.filmApiResponse.producer}
-                            </div>
-                            <div>
-                                Release date: {moment(this.state.filmApiResponse.release_date).format('MMMM Do YYYY')}
-                            </div>
-                            <div>
-                                <br/>
-                                Characters:<br/>
+                            <div className="character-info-container">
+                                <h3 className="character-heading">Characters</h3>
+                                <div className="character-info-text">Hover over character names to see info</div>
                                 {this.renderCharacters()}
                             </div>
                         </div>

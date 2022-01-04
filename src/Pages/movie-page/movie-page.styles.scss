@@ -12,19 +12,35 @@
     
     .additional-info{
       text-align: left;
+      display: flex;
+      justify-content:space-between;
+    }
+
+    .director-info-container{
+
+      padding:20px;
+      font-size: 20px;
+      margin-top: 15px;
+      background-color: rgb(58, 58, 58);
+      height: 130px;
+    }
+    .character-info-container{
+
+      padding:0px 20px;
+      font-size: 18px;
+      margin-top: 15px;
+      background-color: rgb(58, 58, 58);
+      height: auto;
+      margin-right: 200px;
+      margin-bottom: 20px;
     }
 
     .summary{
-      padding:0px 100px;
+      padding:5px 100px;
       padding-bottom: 20px;
       font-size: 20px;
       background-color: rgb(58, 58, 58);
-    }
-    .summary{
-      padding:0px 100px;
-      padding-bottom: 20px;
-      font-size: 20px;
-      background-color: rgb(58, 58, 58);
+      margin-top: 30px;
     }
     .backbutton-container
     {
@@ -52,4 +68,16 @@
         width:auto;
         height:400px;
     }
+    .character-heading{
+      text-align: center;
+      margin-bottom: 5px;
+    }
+    .character-grid-item{
+      font-weight: bold;
+      padding: 5px;
+    }
+    .character-info-text{
+      text-align: center;
+    }
+
   }
