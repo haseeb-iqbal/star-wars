@@ -42,9 +42,7 @@ class MoviePage extends React.Component {
                 ));
         };
     }
-    
-    updateLoading
-    
+        
     renderCharacters()
     {
         let innerTable=[];
@@ -68,27 +66,40 @@ class MoviePage extends React.Component {
         if( this.state.filmApiResponse != null )
         {
             if(this.state.characterApiResponse.length === this.state.filmApiResponse.characters.length || this.state.characterApiResponse.length === this.state.maxCharacters )
-            return (
-            <span>
-                <h1>{this.state.filmApiResponse.title}</h1>
-                <span>{this.state.filmApiResponse.opening_crawl}</span>
-                <div className="additional-info">
-                    <div>
-                        Director: {this.state.filmApiResponse.director}
-                    </div>
-                    <div>
-                        Producer: {this.state.filmApiResponse.producer}
-                    </div>
-                    <div>
-                        Release date: {moment(this.state.filmApiResponse.release_date).format('MMMM Do YYYY')}
-                    </div>
-                    <div>
-                        <br/>
-                        Characters:<br/>
-                        {this.renderCharacters()}
-                    </div>
-                </div>
-            </span>)
+            {
+                return (
+                    <span>
+                        
+                        <div className="backbutton-container">
+                            <button className="MovieButton" onClick={()=>{this.props.navigate("/")}}>Back</button>
+                        </div>
+                        <div className="summary">
+                            <h1>{this.state.filmApiResponse.title}</h1>
+                            {console.log(this.state.filmApiResponse.episode_id)}
+                            <div className="poster-container">
+                                <img src={process.env.PUBLIC_URL + `/Images/Posters/episode${this.state.filmApiResponse.episode_id}.jpg` } className="poster" />
+                            </div>
+                            <span>{this.state.filmApiResponse.opening_crawl}</span>
+                        </div>
+                        
+                        <div className="additional-info">
+                            <div>
+                                Director: {this.state.filmApiResponse.director}
+                            </div>
+                            <div>
+                                Producer: {this.state.filmApiResponse.producer}
+                            </div>
+                            <div>
+                                Release date: {moment(this.state.filmApiResponse.release_date).format('MMMM Do YYYY')}
+                            </div>
+                            <div>
+                                <br/>
+                                Characters:<br/>
+                                {this.renderCharacters()}
+                            </div>
+                        </div>
+                </span>)
+            }
         }
         return (<LoadingShadow/>);
     }

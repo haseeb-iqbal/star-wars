@@ -2,6 +2,7 @@ import React from "react";
 import "./homepage.styles.scss";
 import MovieCard from "../../Components/movie-card/movie-card.component";
 import LoadingShadow from "../../Components/loading-shadow/loading-shadow.component";
+import Navbar from "../../Components/navbar/navbar.component";
 
 class HomePage extends React.Component{
     constructor()
@@ -97,14 +98,7 @@ class HomePage extends React.Component{
     if(this.state.isLoaded)
         return(
             <div className="container">
-                <div className="navbar">
-                    <div>(Placeholder Navbar)</div>
-                    <div>News</div>
-                    <div>Blog</div>
-                    <div>Community</div>
-                    <div>Games</div>
-                    <div>Videos</div>
-                </div>
+
                 <div className="lower-container">
                     <div className="content">
                         <input type="search" placeholder="search movie" className="search-bar" onChange={this.handleChange}/>

@@ -13,4 +13,43 @@
     .additional-info{
       text-align: left;
     }
+
+    .summary{
+      padding:0px 100px;
+      padding-bottom: 20px;
+      font-size: 20px;
+      background-color: rgb(58, 58, 58);
+    }
+    .summary{
+      padding:0px 100px;
+      padding-bottom: 20px;
+      font-size: 20px;
+      background-color: rgb(58, 58, 58);
+    }
+    .backbutton-container
+    {
+      display: flex;
+      align-items: flex-start;  
+      padding-top: 10px;
+      margin-bottom: -20px;
+      .MovieButton
+      {
+        color: black;
+        font-size: 20px;
+        width:80px;
+        height: 30px;
+        cursor: pointer;
+      }
+    }
+    .poster-container{
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 30px;
+    }
+    .poster
+    {
+        width:auto;
+        height:400px;
+    }
   }
