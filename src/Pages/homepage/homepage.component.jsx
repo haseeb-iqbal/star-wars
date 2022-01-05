@@ -19,7 +19,7 @@ class HomePage extends React.Component{
     }
     componentDidMount()
     {
-        //Loading fvourites from local storage if present
+        //Loading favourites from local storage if present
         var favouriteMovies=localStorage.getItem('favourite-movies');
         if(favouriteMovies!=null){
             this.setState({
@@ -28,7 +28,7 @@ class HomePage extends React.Component{
         }
 
         //Fetching data to display
-        fetch('/Data/Features.txt')
+        fetch('/Data/features.txt')
         .then((file) => file.text())
         .then(text  => {this.setState({featuresText:text})});
 
