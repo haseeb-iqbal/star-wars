@@ -28,7 +28,7 @@ class HomePage extends React.Component{
         }
 
         //Fetching data to display
-        fetch('/Data/features.txt')
+        fetch(process.env.PUBLIC_URL +'/Data/features.txt')
         .then((file) => file.text())
         .then(text  => {this.setState({featuresText:text})});
 
