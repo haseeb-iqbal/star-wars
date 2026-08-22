@@ -1,1 +1,1 @@
-A star wars movie database created in React getting data from the [SWAPI](https://swapi.dev/) API.
+A star wars movie database created in React using the [SWAPI](https://swapi.dev/) API.
